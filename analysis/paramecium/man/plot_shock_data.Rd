@@ -34,7 +34,7 @@ dat<-read.table(filename, sep=',', header=TRUE)
 vec<-lapply(unique(dat$ID), function(x){sqrt(diff(dat$X[dat$ID==x])^2+diff(dat$Y[dat$ID==x])^2)  })
 vec<-do.call("rbind", vec)
 
-logfile<-system.file('data/log_15000_mV_rep03.log', package='paramecium')
+logfile<-system.file('data/log_15000_mV_rep03.txt', package='paramecium')
 log<-read.table(logfile, skip=1, header=TRUE, fill=TRUE, row.names = NULL)
 names(log)<-c('Frame', 'Time', 'Stimuli', 'Event', 'Trial')
 
