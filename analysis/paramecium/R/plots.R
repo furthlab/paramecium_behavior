@@ -8,19 +8,22 @@
 #' @param shock_on_times Numeric vector of shock on times in seconds.
 #' @param shock_off_times Numeric vector of shock off times in seconds.
 #'
-#' @importFrom graphics layout plot lines box polygon par
-#' @importFrom stats apply mean
 #' @import sciplot
 #'
 #' @examples
-#' dat<-read.table('~/Downloads/track_data.csv', sep=',', header=TRUE)
+#' filename<-system.file('data/out_15000_mV_rep03.csv', package='paramecium')
+#' dat<-read.table(filename, sep=',', header=TRUE)
 #' vec<-lapply(unique(dat$ID), function(x){sqrt(diff(dat$X[dat$ID==x])^2+diff(dat$Y[dat$ID==x])^2)  })
 #' vec<-do.call("rbind", vec)
 #'
-#' fps<-23.977351668359663  # Replace with actual frames per second
+#' logfile<-system.file('data/log_15000_mV_rep03.log', package='paramecium')
+#' log<-read.table(logfile, skip=1, header=TRUE, fill=TRUE, row.names = NULL)
+#' names(log)<-c('Frame', 'Time', 'Stimuli', 'Event', 'Trial')
 #'
-#' shock_on_times <- c(2.8, 16, 28.2, 41.75)  # Replace with actual shock on times in seconds
-#' shock_off_times <- c(6.7, 19, 33, 44.5)  # Replace with actual shock off times in seconds
+#' fps<-30  # Replace with actual frames per second
+#'
+#' shock_on_times<-log$Frame[which(log$Stimuli=='US' & log$Event=='on')]/fps
+#' shock_off_times<-log$Frame[which(log$Stimuli=='US' & log$Event=='off')]/fps
 #'
 #' out<-plot_shock_data(vec, fps, shock_on_times, shock_off_times)
 #'
@@ -42,6 +45,10 @@ plot_shock_data <- function(vec, fps, shock_on_times, shock_off_times, col='pink
   box()
   lines((1:ncol(vec))[-c(1:remove)]/fps, (apply(vec, 2, mean, na.rm=TRUE))[-c(1:remove)])
   lines( smooth.spline((1:ncol(vec))[-c(1:remove)]/fps, (apply(vec, 2, mean, na.rm=TRUE))[-c(1:remove)]), col='red')
+
+  ### extract perievent
+  time<-(1:ncol(vec))[-c(1:remove)]/fps
+  which(time)
 
   tim<-(1:ncol(vec))[-c(1:remove)]/fps
   shockon <- c()
@@ -92,7 +99,7 @@ plot_shock_data <- function(vec, fps, shock_on_times, shock_off_times, col='pink
     ymax=102
   }
 
-  bargraph.CI(labels, relative_means, ylab = "Grand mean (%)", las = 1, ylim = c(0, ymax), xlab = '', col = c('white', col))
+  sciplot::bargraph.CI(labels, relative_means, ylab = "Grand mean (%)", las = 1, ylim = c(0, ymax), xlab = '', col = c('white', col))
   par(xpd = F)
 
   # Create the list object with average velocity during shock and non-shock conditions
@@ -104,4 +111,28 @@ plot_shock_data <- function(vec, fps, shock_on_times, shock_off_times, col='pink
   print(t.test(shockon, shockoff))
   return(output_list)
 
+}
+
+
+
+extract_trace <- function(vec, time, timestamp) {
+  output_list <- vector("list", length(timestamp))
+
+  for (i in seq_along(timestamp)) {
+    event_time <- timestamp[i]
+    start_time <- event_time - 2
+    end_time <- event_time + 6
+
+    # Find the indices corresponding to the start and end times
+    start_index <- max(which(time <= start_time))
+    end_index <- min(which(time >= end_time))
+
+    # Extract the trace within the specified range
+    trace <- vec[start_index:end_index]
+
+    # Add the trace to the output list
+    output_list[[i]] <- trace
+  }
+
+  return(output_list)
 }
