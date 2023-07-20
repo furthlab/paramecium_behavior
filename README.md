@@ -1,3 +1,5 @@
+# Paramecium skinnerbox
+
 ## Prerequisites
 
 Create environment:
@@ -49,5 +51,7 @@ Open up  tensorboard to follow the results:
 ```sh
 tensorboard --logdir=.
 ```
+
+## Prediction
 
 
