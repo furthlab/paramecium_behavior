@@ -48,7 +48,6 @@ plot_shock_data <- function(vec, fps, shock_on_times, shock_off_times, col='pink
 
   ### extract perievent
   time<-(1:ncol(vec))[-c(1:remove)]/fps
-  which(time)
 
   tim<-(1:ncol(vec))[-c(1:remove)]/fps
   shockon <- c()
