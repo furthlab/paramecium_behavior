@@ -23,10 +23,12 @@ TAPIR:
 Cant use TAPIR yet due to conflicting numpy versions with the rest of the stack.
 
 ```
-pip install -r tapnet/requirements_inference.txt
-
+git clone https://github.com/deepmind/tapnet.git
+cd tapnet
+pip install -r ../requirements_tapir.txt
 mkdir tapnet/checkpoints
-curl -o tapnet/checkpoints/tapir_checkpoint.npy https://storage.googleapis.com/dm-tapnet/tapir_checkpoint.npy
+curl -o checkpoints/causal_tapir_checkpoint.npy https://storage.googleapis.com/dm-tapnet/causal_tapir_checkpoint.npy
+cd ..
 ls tapnet/checkpoints
 ```
 
