@@ -34,7 +34,7 @@ cd ..
 ls tapnet/checkpoints
 ```
 
-## Training
+## Segmentation training
 
 ### Augment training data set
 

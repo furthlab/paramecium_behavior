@@ -45,9 +45,6 @@ class Detectors(object):
         Return:
             centers: vector of object centroids in a frame
         """
-
-        # Convert BGR to GRAY
-        img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         
         # Perform Background Subtraction
         #fgmask = self.fgbg.apply(blurred)
@@ -74,6 +71,8 @@ class Detectors(object):
         blob_radius_thresh = 8
         contourColor = (64,163,241)  # Orange color (BGR format)
         centroidColor = (0, 0, 255)  # Red color (BGR format)
+
+        img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         n_channel = 1 if img.ndim == 2 else img.shape[-1]
         axis_norm = (0,1)   # normalize channels independently
