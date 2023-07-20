@@ -58,4 +58,14 @@ tensorboard --logdir=.
 
 ## Prediction
 
+The prediction script takes three inputs:
+ - path to video raw input (8-bit RGB in `.avi`, `.mov`, `.mp4`): 
+    - `'./video/example.avi'`
+- file to where the output should be written in mp4 format:
+    - `'out_example.mp4'`
+- file to where tabulated data frame should be written:
+    - `'example.csv'`
 
+```sh
+python prediction.py './video/example.avi' 'out_example.mp4' 'example.csv'
+```

@@ -105,7 +105,7 @@ def main(video_path, output_video_path, track_data_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python prediction.py './video/470_mV.mov' 'out_470_mV.mp4' '470_mV.csv'")
+        print("Usage: python prediction.py './video/example.avi' 'out_example.mp4' 'example.csv'")
     else:
         video_path = sys.argv[1]
         output_video_path = sys.argv[2]
