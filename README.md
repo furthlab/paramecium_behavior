@@ -66,6 +66,7 @@ The prediction script takes three inputs:
 - file to where tabulated data frame should be written:
     - `'example.csv'`
 
+This github repo comes loaded with a small example movie so can be tested with:
 ```sh
 python prediction.py './video/example.avi' 'out_example.mp4' 'example.csv'
 ```
