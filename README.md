@@ -41,6 +41,10 @@ ls tapnet/checkpoints
 ```sh
 python augment_image_data.py
 ```
+This expands `images_org` and `masks_org` into `images` (input) and `masks` (ground truth). 
+Input and ground truth are matched based on file name. Format is 8-bit monochrome TIF on both. 
+
+If more than 255 cells needs to be segmented within a single image you can simply change mask format to 16-bit.
 
 ### Perform training
 
