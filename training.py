@@ -103,3 +103,4 @@ def augmenter(x, y):
     return x, y
 
 model.train(X_trn, Y_trn, validation_data=(X_val,Y_val), augmenter=augmenter)
+model.optimize_thresholds(X_val, Y_val)

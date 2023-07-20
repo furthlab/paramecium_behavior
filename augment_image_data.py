@@ -18,7 +18,7 @@ roi_size = (256, 256)
 roi_step = 128
 
 # Get the list of file names in the mask_org folder
-file_names = os.listdir(mask_org_folder)
+file_names = [file for file in os.listdir(mask_org_folder) if file.lower().endswith(('.tif', '.tiff'))]
 
 # Iterate over the file names
 for file_name in file_names:
