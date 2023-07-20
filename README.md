@@ -1,6 +1,6 @@
 # Paramecium skinnerbox
 
-## Prerequisites
+## Installation
 
 Create environment:
 ```sh
