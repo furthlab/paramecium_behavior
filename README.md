@@ -36,7 +36,7 @@ ls tapnet/checkpoints
 
 ## Training
 
-### Create training data set
+### Augment training data set
 
 ```sh
 python augment_image_data.py
