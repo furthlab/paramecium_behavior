@@ -64,7 +64,7 @@ print(conf)
 vars(conf)
 
 
-model = StarDist2D(conf, name='stardist', basedir='models')
+model = StarDist2D(conf, name='grayscale_paramecium', basedir='models')
 
 median_size = calculate_extents(list(Y), np.median)
 fov = np.array(model._axes_tile_overlap('YX'))

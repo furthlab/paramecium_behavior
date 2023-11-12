@@ -70,3 +70,6 @@ This github repo comes loaded with a small example movie so can be tested with:
 ```sh
 python prediction.py './video/example.avi' 'out_example.mp4' 'example.csv'
 ```
+
+python -m pip install torch torchvision torchaudio
+python -m pip install deep-sort-realtime

@@ -29,6 +29,7 @@ for file_name in file_names:
     # Read the corresponding RGB image
     image_path = os.path.join(images_org_folder, file_name)
     image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Get the dimensions of the images
     mask_height, mask_width = mask.shape[:2]
